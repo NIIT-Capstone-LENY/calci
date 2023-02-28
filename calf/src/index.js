@@ -1,17 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import "./styles.css";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+function App() {
+  const [display, setDisplay] = useState("");  //here [display-input value ,setDisplay-the changed value] and useState(default value) is a hook ("") this is a string 
+  const [expression, setExpression] = useState([]); //same as above just ([]) this means it is an array
+
+  const handleClick = value => {
+    setDisplay(value);
+    setExpression([...expression, value]);
+  }; //function used to set the value on click
+
+  const handleResult = () => {
+    const result = expression.join("").split(/(\D)/g).map(value => (value.match(/\d/g) ? parseInt(value, 0) : value))
+    .reduce((acc, value, index, array) => {
+        switch (value) {
+          case "+":
+            return (acc = acc + array[index + 1]);
+          case "-":
+            return (acc = acc - array[index + 1]);
+          case "x":
+            return (acc = acc * array[index + 1]);
+          case "÷":
+            return (acc = acc / array[index + 1]);
+          default:
+            return acc;
+        }
+      });
+    setDisplay(result);
+    setExpression("");
+  };}
