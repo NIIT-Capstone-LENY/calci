@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
-import "./styles.css";
+import "./style.css";
 
 function App() {
   const [display, setDisplay] = useState("");  //here [display-input value ,setDisplay-the changed value] and useState(default value) is a hook ("") this is a string 
@@ -68,4 +68,4 @@ function App() {
 }
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App />, rootElement);
