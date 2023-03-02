@@ -13,7 +13,7 @@ function App() {
   }; //function used to set the value on click
 
   const handleResult = () => {
-    const result = expression.join("").split(/(\D)/g).map(value => (value.match(/\d/g) ? parseInt(value, 0) : value))
+    const result = expression.join("").split(/(\D)/g).map(value => (value.match(/\d/g) ? parseInt(value, 0) : value))    
     .reduce((acc, value, index, array) => {
         switch (value) {
           case "+":
@@ -28,6 +28,20 @@ function App() {
             return acc;
         }
       });
+// expression.join("") concatenates all the elements of the expression array into a single string.
+
+// split(/(\D)/g) splits the string into an array of substrings by matching all non-digit characters (\D). The g flag is used to perform a global search, i.e., to find all matches rather than stopping after the first match.
+
+// map(value => (value.match(/\d/g) ? parseInt(value, 0) : value)) maps each substring to either a number (if it contains only digits) or the original string (if it contains non-digit characters).
+
+// reduce((acc, value, index, array) => {...}) applies 
+//a function to each element of the mapped array, accumulating the result. The function takes four parameters:
+
+// acc: the accumulator, initialized to the first element of the array.
+// value: the current element of the array.
+// index: the index of the current element.
+// array: the original array.
+
     setDisplay(result);
     setExpression("");
   };
